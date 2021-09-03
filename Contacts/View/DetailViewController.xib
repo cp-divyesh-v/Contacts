@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="18122" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_1" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="18093"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="System colors in document resources" minToolsVersion="11.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="DetailViewController" customModule="Contacts" customModuleProvider="target">
+            <connections>
+                <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
+            </connections>
+        </placeholder>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view clearsContextBeforeDrawing="NO" contentMode="scaleToFill" id="i5M-Pr-FkT">
+            <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="KTV-SW-jl8">
+                    <rect key="frame" x="0.0" y="0.0" width="414" height="313.5"/>
+                    <subviews>
+                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="z1W-cc-paE">
+                            <rect key="frame" x="152" y="102" width="110" height="109.5"/>
+                            <subviews>
+                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="A" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="1mf-wt-Gzy">
+                                    <rect key="frame" x="29.5" y="0.0" width="51" height="109.5"/>
+                                    <fontDescription key="fontDescription" type="system" pointSize="80"/>
+                                    <nil key="textColor"/>
+                                    <nil key="highlightedColor"/>
+                                </label>
+                            </subviews>
+                            <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                            <constraints>
+                                <constraint firstItem="1mf-wt-Gzy" firstAttribute="centerX" secondItem="z1W-cc-paE" secondAttribute="centerX" id="bp9-dM-atd"/>
+                                <constraint firstItem="1mf-wt-Gzy" firstAttribute="height" secondItem="z1W-cc-paE" secondAttribute="height" id="jun-LF-dSE"/>
+                                <constraint firstAttribute="width" secondItem="z1W-cc-paE" secondAttribute="height" multiplier="1:1" id="rMi-2g-NdL"/>
+                                <constraint firstItem="1mf-wt-Gzy" firstAttribute="centerY" secondItem="z1W-cc-paE" secondAttribute="centerY" id="z6v-uc-rlR"/>
+                            </constraints>
+                        </view>
+                    </subviews>
+                    <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                    <constraints>
+                        <constraint firstItem="z1W-cc-paE" firstAttribute="centerX" secondItem="KTV-SW-jl8" secondAttribute="centerX" id="4Eo-XM-rPE"/>
+                        <constraint firstItem="z1W-cc-paE" firstAttribute="height" secondItem="KTV-SW-jl8" secondAttribute="height" multiplier="0.35" id="iky-l3-tWI"/>
+                        <constraint firstItem="z1W-cc-paE" firstAttribute="centerY" secondItem="KTV-SW-jl8" secondAttribute="centerY" id="uXx-wK-mQm"/>
+                    </constraints>
+                </view>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Fo7-sJ-EuA">
+                    <rect key="frame" x="0.0" y="313.5" width="414" height="582.5"/>
+                    <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                </view>
+            </subviews>
+            <viewLayoutGuide key="safeArea" id="fnl-2z-Ty3"/>
+            <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+            <constraints>
+                <constraint firstItem="KTV-SW-jl8" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" id="Ay0-eJ-xi1"/>
+                <constraint firstItem="KTV-SW-jl8" firstAttribute="height" secondItem="i5M-Pr-FkT" secondAttribute="height" multiplier="0.35" id="CIu-eu-UOt"/>
+                <constraint firstAttribute="trailing" secondItem="Fo7-sJ-EuA" secondAttribute="trailing" id="KNx-fw-nqU"/>
+                <constraint firstAttribute="bottom" secondItem="Fo7-sJ-EuA" secondAttribute="bottom" id="frT-SP-fxi"/>
+                <constraint firstItem="Fo7-sJ-EuA" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="gOc-SO-QS5"/>
+                <constraint firstAttribute="trailing" secondItem="KTV-SW-jl8" secondAttribute="trailing" id="pV9-Ut-gH5"/>
+                <constraint firstItem="KTV-SW-jl8" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="pu3-p8-qQU"/>
+                <constraint firstItem="Fo7-sJ-EuA" firstAttribute="top" secondItem="KTV-SW-jl8" secondAttribute="bottom" id="qne-GE-s2O"/>
+            </constraints>
+            <point key="canvasLocation" x="55" y="109"/>
+        </view>
+    </objects>
+    <resources>
+        <systemColor name="systemBackgroundColor">
+            <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
+    </resources>
+</document>
