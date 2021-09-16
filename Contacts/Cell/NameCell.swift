@@ -2,22 +2,16 @@
 //  NameCell.swift
 //  Contacts
 //
-//  Created by Divyesh Vekariya on 03/09/21.
+//  Created by Divyesh Vekariya on 16/09/21.
 //
 
 import UIKit
 
-class NameCell: UITableViewCell {
+class NameCell: UICollectionViewCell {
 
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
     }
 
-    override func setSelected(_ selected: Bool, animated: Bool) {
-        super.setSelected(selected, animated: animated)
-
-        // Configure the view for the selected state
-    }
-    
 }
