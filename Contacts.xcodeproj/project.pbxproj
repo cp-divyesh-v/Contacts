@@ -105,6 +105,7 @@
 		2A640FA226E245C50022895F /* DataStore */ = {
 			isa = PBXGroup;
 			children = (
+				2A71158726F8A9A100CADDDB /* DataStore.xcdatamodeld */,
 			);
 			path = DataStore;
 			sourceTree = "<group>";
@@ -125,7 +126,6 @@
 			children = (
 				2ADD2C6F26C5458700A79BD6 /* Contacts.xcdatamodeld */,
 				2ADD2C7726C5458800A79BD6 /* Info.plist */,
-				2A71158726F8A9A100CADDDB /* DataStore.xcdatamodeld */,
 				2ADD2C7226C5458800A79BD6 /* Assets.xcassets */,
 			);
 			path = Resorces;

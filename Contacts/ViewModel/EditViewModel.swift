@@ -8,5 +8,7 @@
 import Foundation
 
 class EditViewModelz {
-    
+    init() {
+        
+    }
 }
