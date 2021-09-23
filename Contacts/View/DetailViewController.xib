@@ -10,6 +10,9 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="DetailViewController" customModule="Contacts" customModuleProvider="target">
             <connections>
+                <outlet property="cherecterContainter" destination="z1W-cc-paE" id="nQn-xp-frO"/>
+                <outlet property="editButton" destination="9MU-b6-26r" id="45f-YQ-s1W"/>
+                <outlet property="firstCherecterLabel" destination="1mf-wt-Gzy" id="0co-O4-y1S"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
             </connections>
         </placeholder>
