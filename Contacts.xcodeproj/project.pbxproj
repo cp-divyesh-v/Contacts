@@ -10,6 +10,7 @@
 		2A2FBD1226FCAC3D00E75ACC /* DetailCellModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A2FBD1126FCAC3D00E75ACC /* DetailCellModel.swift */; };
 		2A2FBD1526FCACB900E75ACC /* DetailCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A2FBD1326FCACB900E75ACC /* DetailCell.swift */; };
 		2A2FBD1626FCACB900E75ACC /* DetailCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2A2FBD1426FCACB900E75ACC /* DetailCell.xib */; };
+		2A33B4152701EB27005B0619 /* LocalRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A33B4142701EB27005B0619 /* LocalRepository.swift */; };
 		2A47F77D26F21BD400183547 /* NameCellModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A47F77C26F21BD400183547 /* NameCellModel.swift */; };
 		2A47F77F26F21C2A00183547 /* HomeViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A47F77E26F21C2A00183547 /* HomeViewModel.swift */; };
 		2A47F78126F21C4600183547 /* DetailViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A47F78026F21C4600183547 /* DetailViewModel.swift */; };
@@ -54,6 +55,7 @@
 		2A2FBD1126FCAC3D00E75ACC /* DetailCellModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailCellModel.swift; sourceTree = "<group>"; };
 		2A2FBD1326FCACB900E75ACC /* DetailCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailCell.swift; sourceTree = "<group>"; };
 		2A2FBD1426FCACB900E75ACC /* DetailCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = DetailCell.xib; sourceTree = "<group>"; };
+		2A33B4142701EB27005B0619 /* LocalRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocalRepository.swift; sourceTree = "<group>"; };
 		2A47F77C26F21BD400183547 /* NameCellModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NameCellModel.swift; sourceTree = "<group>"; };
 		2A47F77E26F21C2A00183547 /* HomeViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewModel.swift; sourceTree = "<group>"; };
 		2A47F78026F21C4600183547 /* DetailViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailViewModel.swift; sourceTree = "<group>"; };
@@ -108,6 +110,14 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		2A33B4132701EAFA005B0619 /* Repository */ = {
+			isa = PBXGroup;
+			children = (
+				2A33B4142701EB27005B0619 /* LocalRepository.swift */,
+			);
+			path = Repository;
+			sourceTree = "<group>";
+		};
 		2A640FA226E245C50022895F /* DataStore */ = {
 			isa = PBXGroup;
 			children = (
@@ -197,6 +207,7 @@
 				2ADD2C6826C5458700A79BD6 /* SceneDelegate.swift */,
 				2A640FA426E245FD0022895F /* Resorces */,
 				2A640FA226E245C50022895F /* DataStore */,
+				2A33B4132701EAFA005B0619 /* Repository */,
 				2AE2E51726E8D8220069FA82 /* Models */,
 				2A640FA326E245E70022895F /* View */,
 				2A6D414B26E2454E002DE927 /* ViewController */,
@@ -371,6 +382,7 @@
 				2A47F77D26F21BD400183547 /* NameCellModel.swift in Sources */,
 				2A47F77F26F21C2A00183547 /* HomeViewModel.swift in Sources */,
 				2ADD2C7126C5458700A79BD6 /* Contacts.xcdatamodeld in Sources */,
+				2A33B4152701EB27005B0619 /* LocalRepository.swift in Sources */,
 				2A2FBD1526FCACB900E75ACC /* DetailCell.swift in Sources */,
 				2A71158926F8A9A100CADDDB /* DataStore.xcdatamodeld in Sources */,
 				2A47F78126F21C4600183547 /* DetailViewModel.swift in Sources */,
