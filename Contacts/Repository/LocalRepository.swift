@@ -9,10 +9,7 @@ import CoreData
 import UIKit
 
 class LocalRepository {
-    
-    init() {
-        openDatabse()
-    }
+    static let INSTANCE = LocalRepository()
     
     let appDelegate = UIApplication.shared.delegate as! AppDelegate //Singlton instance
     var context: NSManagedObjectContext!
@@ -24,19 +21,22 @@ class LocalRepository {
         return newContact
     }
     
-    func saveData(managedObjec: NSManagedObject, Contact: ContactModel) {
-        managedObjec.setValue(Contact.id, forKey: "id")
-        managedObjec.setValue(Contact.firstName, forKey: "firstName")
-        managedObjec.setValue(Contact.lastName, forKey: "lastName")
-        managedObjec.setValue(Contact.mobileNumber, forKey: "mobileNumber")
-        managedObjec.setValue(Contact.emails, forKey: "emails")
-        managedObjec.setValue(Contact.countryCode, forKey: "countryCode")
-        managedObjec.setValue(Contact.defaultRingTone, forKey: "defaultRingTone")
-        managedObjec.setValue(Contact.updateAt, forKey: "updatedAt")
-        managedObjec.setValue(Contact.createdAt, forKey: "createdAt")
+    func saveData(contact: Contact) {
+        let managedObjec = openDatabse()
+        
+        managedObjec.setValue(contact.id, forKey: "id")
+        managedObjec.setValue(contact.firstName, forKey: "firstName")
+        managedObjec.setValue(contact.lastName, forKey: "lastName")
+        managedObjec.setValue(contact.mobileNumber, forKey: "mobileNumber")
+        managedObjec.setValue(contact.emails, forKey: "emails")
+        managedObjec.setValue(contact.countryCode, forKey: "countryCode")
+        managedObjec.setValue(contact.defaultRingTone, forKey: "defaultRingTone")
+        managedObjec.setValue(contact.updateAt, forKey: "updatedAt")
+        managedObjec.setValue(contact.createdAt, forKey: "createdAt")
         
         print("Storing Data..")
         do {
+            context.insert(managedObjec)
             try context.save()
         } catch {
             print("Storing data Failed")
@@ -50,7 +50,7 @@ class LocalRepository {
         do {
             let result = try context.fetch(request)
             for data in result as! [NSManagedObject] {
-                let userName = data.value(forKey: "username") as! String
+                let userName = data.value(forKey: "firstName") as! String
                 let age = data.value(forKey: "age") as! String
                 print("User Name is : "+userName+" and Age is : "+age)
             }

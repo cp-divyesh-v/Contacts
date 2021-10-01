@@ -1,25 +1,18 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="18154" systemVersion="20B29" minimumToolsVersion="Automatic" sourceLanguage="Swift" userDefinedModelVersionIdentifier="">
-    <entity name="Address" representedClassName="Address" parentEntity="Contact" syncable="YES" codeGenerationType="class">
-        <attribute name="country" optional="YES" attributeType="String" defaultValueString="&quot;&quot;"/>
-        <attribute name="postalCode" optional="YES" attributeType="Integer 64" minValueString="6" defaultValueString="0" usesScalarValueType="YES"/>
-        <attribute name="state" optional="YES" attributeType="String" defaultValueString="&quot;&quot;"/>
-        <attribute name="street" optional="YES" attributeType="String" defaultValueString="&quot;&quot;"/>
-    </entity>
     <entity name="Contact" representedClassName="Contact" syncable="YES" codeGenerationType="class">
+        <attribute name="address" optional="YES" attributeType="String"/>
         <attribute name="countryCode" optional="YES" attributeType="String" defaultValueString="+91"/>
         <attribute name="createdAt" optional="YES" attributeType="Date" usesScalarValueType="NO"/>
         <attribute name="defaultRingTone" optional="YES" attributeType="String" defaultValueString="&quot;&quot;"/>
-        <attribute name="emails" optional="YES" attributeType="String"/>
+        <attribute name="emails" optional="YES" attributeType="Transformable" customClassName="[String]"/>
         <attribute name="firstName" optional="YES" attributeType="String"/>
         <attribute name="id" attributeType="UUID" usesScalarValueType="NO"/>
         <attribute name="lastName" optional="YES" attributeType="String"/>
-        <attribute name="mobileNumber" optional="YES" attributeType="Integer 64" minValueString="10" maxValueString="10" defaultValueString="0" usesScalarValueType="YES"/>
+        <attribute name="mobileNumber" optional="YES" attributeType="Transformable" valueTransformerName="" minValueString="10" maxValueString="10" customClassName="[Int]"/>
         <attribute name="updateAt" optional="YES" attributeType="Date" usesScalarValueType="NO"/>
-        <relationship name="home" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Contact" inverseName="home" inverseEntity="Contact"/>
     </entity>
     <elements>
-        <element name="Address" positionX="-54" positionY="63" width="128" height="89"/>
         <element name="Contact" positionX="-63" positionY="-18" width="128" height="179"/>
     </elements>
 </model>
