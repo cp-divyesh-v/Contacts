@@ -21,16 +21,16 @@ class LocalRepository {
         return newContact
     }
     
-    func saveData(contact: Contact) {
+    func saveData(contact: ContactModel) {
         let managedObjec = openDatabse()
         
         managedObjec.setValue(contact.id, forKey: "id")
         managedObjec.setValue(contact.firstName, forKey: "firstName")
         managedObjec.setValue(contact.lastName, forKey: "lastName")
-        managedObjec.setValue(contact.mobileNumber, forKey: "mobileNumber")
+        managedObjec.setValue(contact.mobileNumbers, forKey: "mobileNumbers")
         managedObjec.setValue(contact.emails, forKey: "emails")
         managedObjec.setValue(contact.countryCode, forKey: "countryCode")
-        managedObjec.setValue(contact.defaultRingTone, forKey: "defaultRingTone")
+        managedObjec.setValue(contact.defaultRingtone, forKey: "defaultRingtone")
         managedObjec.setValue(contact.updateAt, forKey: "updatedAt")
         managedObjec.setValue(contact.createdAt, forKey: "createdAt")
         
@@ -38,6 +38,7 @@ class LocalRepository {
         do {
             context.insert(managedObjec)
             try context.save()
+            print("contact have been saved at \(FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first?.path ?? "it's nil")")
         } catch {
             print("Storing data Failed")
         }
