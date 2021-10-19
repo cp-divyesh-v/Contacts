@@ -49,7 +49,7 @@ class LocalRepository {
         let request = NSFetchRequest<NSFetchRequestResult>(entityName: "Contact")
         request.returnsObjectsAsFaults = false
         do {
-            let result = try context.fetch(request)
+            let result = try context.fetch(request) as! [NSManagedObject]
             for data in result as! [NSManagedObject] {
                 let userName = data.value(forKey: "firstName") as! String
                 let age = data.value(forKey: "age") as! String

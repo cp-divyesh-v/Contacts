@@ -6,12 +6,17 @@
 //
 
 import UIKit
+import RxSwift
 
 class HomeViewController: UIViewController {
 
+    @IBOutlet weak var tableView: UITableView!
+    @IBOutlet weak var addNew: UIButton!
+    
     var viewModel: HomeViewModel!
     override func viewDidLoad() {
         super.viewDidLoad()
+        setUpRxObservers()
         LocalRepository.INSTANCE.saveData(contact: createObject())
         
     }
@@ -21,4 +26,9 @@ class HomeViewController: UIViewController {
 
         return item
     }
+    
+    func setUpRxObservers() {
+        
+    }
+    
 }

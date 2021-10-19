@@ -6,9 +6,12 @@
 //
 
 import UIKit
+import RxSwift
 
 class NameCell: UITableViewCell {
-
+    static var ID: String { String(describing: Self.self) }
+    static var NIB: UINib { .init(nibName: String(describing: Self.self), bundle: .main) }
+    
     @IBOutlet weak var carecterView: UIView!
     @IBOutlet weak var charecterLabel: UILabel!
     @IBOutlet weak var nameLabel: UILabel!

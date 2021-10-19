@@ -8,7 +8,10 @@
 import UIKit
 
 class DetailCell: UICollectionViewCell {
-
+    
+    static var ID: String { String(describing: Self.self) }
+    static var NIB: UINib { .init(nibName: String(describing: Self.self), bundle: .main) }
+    
     @IBOutlet weak var container: UIView!
     @IBOutlet weak var countryCode: UILabel!
     @IBOutlet weak var numberLabel: UILabel!
