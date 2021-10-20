@@ -19,6 +19,7 @@ class HomeViewController: UIViewController {
         setUpRxObservers()
         LocalRepository.INSTANCE.saveData(contact: createObject())
         
+        
     }
     
     func createObject() -> ContactModel {
@@ -31,4 +32,9 @@ class HomeViewController: UIViewController {
         
     }
     
+    func setUpContentChangdObservers() {
+        viewModel.contacts.asObserver().subscribe(onNext: { [weak self] contat in
+            
+        })
+    }
 }

@@ -6,10 +6,15 @@
 //
 
 import Foundation
+import RxSwift
 
 class NameCellModel {
+   
+    let name: BehaviorSubject<String>
+    let carecter: BehaviorSubject<String>
     
-    init() {
-        
+    init(firstName: String, lastName: String) {
+        self.name = .init(value: "\(firstName) \(lastName)")
     }
+    
 }

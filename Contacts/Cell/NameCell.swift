@@ -12,6 +12,10 @@ class NameCell: UITableViewCell {
     static var ID: String { String(describing: Self.self) }
     static var NIB: UINib { .init(nibName: String(describing: Self.self), bundle: .main) }
     
+    lazy var disposeBag: DisposeBag = {
+        return DisposeBag()
+    }()
+    
     @IBOutlet weak var carecterView: UIView!
     @IBOutlet weak var charecterLabel: UILabel!
     @IBOutlet weak var nameLabel: UILabel!
@@ -23,6 +27,16 @@ class NameCell: UITableViewCell {
     override func setSelected(_ selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
 
+    }
+    
+    var cellModel: NameCellModel? {
+        didSet {
+            guard let cellModel = self.cellModel else { return }
+            
+            self.disposeBag ~ [
+                cellModel.
+            ]
+        }
     }
     
 }
