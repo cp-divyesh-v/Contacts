@@ -46,6 +46,7 @@ class LocalRepository {
     
     func fetchData() -> Result<[ContactModel], Error> {
         print("Fetching Data..")
+        context = appDelegate.persistentContainer.viewContext
         let request = NSFetchRequest<NSFetchRequestResult>(entityName: "Contact")
         request.returnsObjectsAsFaults = false
         do {

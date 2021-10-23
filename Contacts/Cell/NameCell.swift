@@ -16,12 +16,14 @@ class NameCell: UITableViewCell {
         return DisposeBag()
     }()
     
-    @IBOutlet weak var carecterView: UIView!
+    @IBOutlet weak var characterView: UIView!
     @IBOutlet weak var charecterLabel: UILabel!
     @IBOutlet weak var nameLabel: UILabel!
     
     override func awakeFromNib() {
         super.awakeFromNib()
+        characterView.makeMeCircular()
+        characterView.backgroundColor = Color.colors
     }
 
     override func setSelected(_ selected: Bool, animated: Bool) {
@@ -32,10 +34,43 @@ class NameCell: UITableViewCell {
     var cellModel: NameCellModel? {
         didSet {
             guard let cellModel = self.cellModel else { return }
+            cellModel.name.asObserver().subscribe { name in
+                self.nameLabel.text = name
+            } .disposed(by: disposeBag)
             
-            self.disposeBag ~ [
-                cellModel.
-            ]
+            cellModel.carecter.asObserver().subscribe { cheracter in
+                self.charecterLabel.text = cheracter
+            } .disposed(by: disposeBag)
+
+        }
+    }
+    
+    func rendomColorGen() -> UIColor {
+        
+    }
+    
+    enum Color {
+        case green, blue, red, yellow, pink, purple, cyan, teal
+        
+        var colors: UIColor {
+            switch self {
+            case .green:
+                return .green
+            case .blue:
+                return .blue
+            case .red:
+                return .red
+            case .yellow:
+                return .yellow
+            case .pink:
+                return .systemPink
+            case .purple:
+                return .purple
+            case .cyan:
+                return .cyan
+            case .teal:
+                return .systemTeal
+            }
         }
     }
     

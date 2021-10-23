@@ -10,7 +10,7 @@ import RxSwift
 
 class HomeViewModel {
     
-    let contacts: BehaviorSubject<[ContactModel]> = .init(value: [])
+    let cells: BehaviorSubject<[NameCellModel]> = .init(value: [])
     
     init() {
         setUpRxObservers()
@@ -21,8 +21,8 @@ class HomeViewModel {
         let result = LocalRepository.INSTANCE.fetchData()
         
         switch result {
-        case .success(let contact):
-            contacts.onNext(contact)
+        case .success(let contacts):
+            cells.onNext(prepareCell(contacts: contacts))
         case .failure(let error):
             print("Error occured while fetching contacts from local data base and error is \(error)")
         }
@@ -35,7 +35,7 @@ class HomeViewModel {
     func setUpContentChangdObservers() {
     }
     
-    func prepareCell() {
-        
+    func prepareCell(contacts: [ContactModel]) -> [NameCellModel] {
+        contacts.map({NameCellModel.init(firstName: $0.firstName, lastName: $0.lastName)})
     }
 }

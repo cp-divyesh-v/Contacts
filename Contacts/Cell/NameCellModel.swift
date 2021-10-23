@@ -13,8 +13,10 @@ class NameCellModel {
     let name: BehaviorSubject<String>
     let carecter: BehaviorSubject<String>
     
-    init(firstName: String, lastName: String) {
-        self.name = .init(value: "\(firstName) \(lastName)")
+    init(firstName: String, lastName: String?) {
+        self.name = .init(value: "\(firstName) \(lastName ?? "")")
+        self.carecter = .init(value: String(firstName.prefix(1)).uppercased())
+        print("---- cherecter is \(carecter.value)")
     }
     
 }
