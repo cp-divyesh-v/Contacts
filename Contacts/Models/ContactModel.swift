@@ -11,19 +11,18 @@ import Foundation
 struct ContactModel {
     let id: String
     let firstName: String
-    let lastName: String
-    let mobileNumber: [Int]
-    let countryCode: String
+    let lastName: String?
+    let mobileNumbers: [Int]
+    let countryCode: Int
     let emails: [String]?
-    let addrss: AddressModel?
-    let defaultRingTone: String?
+    let defaultRingtone: String?
     let updateAt: Date
     let createdAt: Date
+}
 
-    struct AddressModel {
-        let postalCode: Int?
-        let street: String?
-        let state: String?
-        let country: String?
-    }
+struct AddressModel {
+    let postalCode: Int?
+    let street: String?
+    let state: String?
+    let country: String?
 }

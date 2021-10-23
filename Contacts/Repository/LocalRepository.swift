@@ -13,7 +13,7 @@ class LocalRepository {
     
     let appDelegate = UIApplication.shared.delegate as! AppDelegate //Singlton instance
     var context: NSManagedObjectContext!
-
+    
     func openDatabse() -> NSManagedObject {
         context = appDelegate.persistentContainer.viewContext
         let entity = NSEntityDescription.entity(forEntityName: "Contact", in: context)
@@ -21,16 +21,16 @@ class LocalRepository {
         return newContact
     }
     
-    func saveData(contact: Contact) {
+    func saveData(contact: ContactModel) {
         let managedObjec = openDatabse()
         
         managedObjec.setValue(contact.id, forKey: "id")
         managedObjec.setValue(contact.firstName, forKey: "firstName")
         managedObjec.setValue(contact.lastName, forKey: "lastName")
-        managedObjec.setValue(contact.mobileNumber, forKey: "mobileNumber")
+        managedObjec.setValue(contact.mobileNumbers, forKey: "mobileNumbers")
         managedObjec.setValue(contact.emails, forKey: "emails")
         managedObjec.setValue(contact.countryCode, forKey: "countryCode")
-        managedObjec.setValue(contact.defaultRingTone, forKey: "defaultRingTone")
+        managedObjec.setValue(contact.defaultRingtone, forKey: "defaultRingtone")
         managedObjec.setValue(contact.updateAt, forKey: "updatedAt")
         managedObjec.setValue(contact.createdAt, forKey: "createdAt")
         
@@ -38,24 +38,35 @@ class LocalRepository {
         do {
             context.insert(managedObjec)
             try context.save()
+            print("contact with id: \(managedObjec.objectID) have been saved at \(FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first?.path ?? "it's nil")")
         } catch {
             print("Storing data Failed")
         }
     }
     
-    func fetchData() {
+    func fetchData() -> Result<[ContactModel], Error> {
         print("Fetching Data..")
         let request = NSFetchRequest<NSFetchRequestResult>(entityName: "Contact")
         request.returnsObjectsAsFaults = false
         do {
-            let result = try context.fetch(request)
-            for data in result as! [NSManagedObject] {
-                let userName = data.value(forKey: "firstName") as! String
-                let age = data.value(forKey: "age") as! String
-                print("User Name is : "+userName+" and Age is : "+age)
+            let result = try context.fetch(request) as! [NSManagedObject]
+            var contacts = [ContactModel]()
+            for data in result {
+                let id = data.value(forKey: "id") as! String
+                let firstName = data.value(forKey: "firstName") as! String
+                let lastName = data.value(forKey: "lastName") as! String
+                let mobileNumbers = data.value(forKey: "mobileNumbers") as! [Int]
+                let emails = data.value(forKey: "emails") as! [String]
+                let countryCode = data.value(forKey: "countryCode") as! Int
+                let defaultRingtone = data.value(forKey: "defaultRingtone") as! String
+                let updatedAt = data.value(forKey: "updatedAt") as! Date
+                let createdAt = data.value(forKey: "createdAt") as! Date
+                contacts.append(ContactModel(id: id, firstName: firstName, lastName: lastName, mobileNumbers: mobileNumbers, countryCode: countryCode, emails: emails, defaultRingtone: defaultRingtone, updateAt: updatedAt, createdAt: createdAt))
             }
+            return .success(contacts)
         } catch {
             print("Fetching data Failed")
+            return .failure(error)
         }
     }
 }
