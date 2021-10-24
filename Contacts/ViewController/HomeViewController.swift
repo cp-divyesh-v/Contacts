@@ -65,4 +65,8 @@ extension HomeViewController: UITableViewDataSource {
         cell.cellModel = cellModel
         return cell
     }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        <#code#>
+    }
 }

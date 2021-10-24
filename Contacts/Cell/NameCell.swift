@@ -23,7 +23,7 @@ class NameCell: UITableViewCell {
     override func awakeFromNib() {
         super.awakeFromNib()
         characterView.makeMeCircular()
-        characterView.backgroundColor = Color.colors
+        characterView.backgroundColor = BackgroundColor.allCases.randomElement()!.colors
     }
 
     override func setSelected(_ selected: Bool, animated: Bool) {
@@ -45,11 +45,7 @@ class NameCell: UITableViewCell {
         }
     }
     
-    func rendomColorGen() -> UIColor {
-        
-    }
-    
-    enum Color {
+    enum BackgroundColor: CaseIterable {
         case green, blue, red, yellow, pink, purple, cyan, teal
         
         var colors: UIColor {
