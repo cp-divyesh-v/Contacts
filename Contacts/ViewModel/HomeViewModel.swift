@@ -10,10 +10,6 @@ import RxSwift
 
 class HomeViewModel {
     
-    let disposeBag = DisposeBag()
-    
-    let cells: BehaviorSubject<[NameCellModel]> = .init(value: [])
-   
     // MARK: - Input
     let didActionSubject = PublishSubject<Action>()
     enum Action {
@@ -25,8 +21,10 @@ class HomeViewModel {
     enum ViewToPresent {
         case showDetail(ContactModel)
     }
+    
+    var cells: BehaviorSubject<[NameCellModel]> = .init(value: [])
 
-    var contacts: [ContactModel] {
+    var contacts: [ContactModel] = [] {
         didSet {
             cells.onNext(prepareCell(contacts: contacts))
         }
@@ -35,6 +33,7 @@ class HomeViewModel {
     init() {
         setUpRxObservers()
         getContact()
+        
     }
     
     func getContact() {
@@ -49,7 +48,8 @@ class HomeViewModel {
     }
     
     func setUpRxObservers() {
-        setUpContentChangdObservers()
+//        setUpContentChangdObservers()
+//        setUpActionObservers()
     }
     
     func setUpContentChangdObservers() {
@@ -68,10 +68,17 @@ class HomeViewModel {
             case .selectRow(let indexPath):
                 self?.shouldPresentSubject.onNext(.showDetail((self?.contacts[indexPath.row])!))
             }
-        }) .disposed(by: disposeBag)
+        }) .disposed(by: DisposeBag())
     }
     
     func deleteItemAt(index: IndexPath) {
-        
+        let itemToDelete = contacts.remove(at: index.row)
+        let result = LocalRepository.INSTANCE.deleteItem(item: itemToDelete)
+        switch result {
+        case .success(let item):
+            print("contact have been deleted successfully \(item.id)")
+        case .failure(let error):
+            print("error \(error) occured while deletting contact \(itemToDelete.id)")
+        }
     }
 }

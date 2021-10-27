@@ -11,11 +11,21 @@ import UIKit
 class LocalRepository {
     static let INSTANCE = LocalRepository()
     
-    let appDelegate = UIApplication.shared.delegate as! AppDelegate //Singlton instance
-    var context: NSManagedObjectContext!
+    var persistentContainer: NSPersistentContainer = {
+        let container = NSPersistentContainer(name: "Contact")
+        container.loadPersistentStores(completionHandler: { (_, error) in
+            if let error = error as NSError? {
+                fatalError("Unresolved error \(error), \(error.userInfo)")
+            }
+        })
+        return container
+    }()
+
+    var context: NSManagedObjectContext {
+        return self.persistentContainer.viewContext
+    }
     
     func openDatabse() -> NSManagedObject {
-        context = appDelegate.persistentContainer.viewContext
         let entity = NSEntityDescription.entity(forEntityName: "Contact", in: context)
         let newContact = NSManagedObject(entity: entity!, insertInto: context)
         return newContact
@@ -44,11 +54,14 @@ class LocalRepository {
         }
     }
     
-    func fetchData() -> Result<[ContactModel], Error> {
+    func fetchData(id: String = "") -> Result<[ContactModel], Error> {
         print("Fetching Data..")
-        context = appDelegate.persistentContainer.viewContext
         let request = NSFetchRequest<NSFetchRequestResult>(entityName: "Contact")
         request.returnsObjectsAsFaults = false
+        if id != "" {
+            request.predicate = NSPredicate(format:"id = %@", id)
+            
+        }
         do {
             let result = try context.fetch(request) as! [NSManagedObject]
             var contacts = [ContactModel]()
@@ -66,7 +79,22 @@ class LocalRepository {
             }
             return .success(contacts)
         } catch {
-            print("Fetching data Failed")
+            print("Fetching contact Failed")
+            return .failure(error)
+        }
+    }
+    
+    func deleteItem(item: ContactModel) -> Result<ContactModel, Error> {
+        let request = NSFetchRequest<NSFetchRequestResult>(entityName: "Contact")
+        request.returnsObjectsAsFaults = false
+        request.predicate = NSPredicate(format:"id = %@", item.id)
+        do {
+            let result = try context.fetch(request).first as! NSManagedObject
+            context.delete(result)
+             try context.save()
+            return .success(item)
+        } catch {
+            print("Delete contact Failed")
             return .failure(error)
         }
     }
