@@ -48,8 +48,8 @@ class HomeViewModel {
     }
     
     func setUpRxObservers() {
-//        setUpContentChangdObservers()
-//        setUpActionObservers()
+        setUpContentChangdObservers()
+        setUpActionObservers()
     }
     
     func setUpContentChangdObservers() {
@@ -57,11 +57,11 @@ class HomeViewModel {
     }
     
     func prepareCell(contacts: [ContactModel]) -> [NameCellModel] {
-        contacts.map({NameCellModel.init(firstName: $0.firstName, lastName: $0.lastName)})
+        contacts.map({NameCellModel.init(firstName: $0.firstName, lastName: $0.lastName ?? "")})
     }
     
     func setUpActionObservers() {
-        didActionSubject.asObserver().subscribe(onNext: { [weak self] action in
+        didActionSubject.asObservable().subscribe(onNext: { [weak self] action in
             switch action {
             case .deleteItemAt(let indexPath):
                 self?.deleteItemAt(index: indexPath)
@@ -76,6 +76,7 @@ class HomeViewModel {
         let result = LocalRepository.INSTANCE.deleteItem(item: itemToDelete)
         switch result {
         case .success(let item):
+            getContact()
             print("contact have been deleted successfully \(item.id)")
         case .failure(let error):
             print("error \(error) occured while deletting contact \(itemToDelete.id)")

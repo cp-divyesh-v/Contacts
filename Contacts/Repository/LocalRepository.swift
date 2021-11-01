@@ -11,27 +11,18 @@ import UIKit
 class LocalRepository {
     static let INSTANCE = LocalRepository()
     
-    var persistentContainer: NSPersistentContainer = {
-        let container = NSPersistentContainer(name: "Contact")
-        container.loadPersistentStores(completionHandler: { (_, error) in
-            if let error = error as NSError? {
-                fatalError("Unresolved error \(error), \(error.userInfo)")
-            }
-        })
-        return container
-    }()
-
-    var context: NSManagedObjectContext {
-        return self.persistentContainer.viewContext
-    }
+    let appDelegate = UIApplication.shared.delegate as! AppDelegate //Singlton instance
+    var context: NSManagedObjectContext!
     
     func openDatabse() -> NSManagedObject {
+        context = appDelegate.persistentContainer.viewContext
         let entity = NSEntityDescription.entity(forEntityName: "Contact", in: context)
         let newContact = NSManagedObject(entity: entity!, insertInto: context)
         return newContact
     }
     
     func saveData(contact: ContactModel) {
+        context = appDelegate.persistentContainer.viewContext
         let managedObjec = openDatabse()
         
         managedObjec.setValue(contact.id, forKey: "id")
@@ -55,6 +46,7 @@ class LocalRepository {
     }
     
     func fetchData(id: String = "") -> Result<[ContactModel], Error> {
+        context = appDelegate.persistentContainer.viewContext
         print("Fetching Data..")
         let request = NSFetchRequest<NSFetchRequestResult>(entityName: "Contact")
         request.returnsObjectsAsFaults = false
@@ -85,6 +77,7 @@ class LocalRepository {
     }
     
     func deleteItem(item: ContactModel) -> Result<ContactModel, Error> {
+        context = appDelegate.persistentContainer.viewContext
         let request = NSFetchRequest<NSFetchRequestResult>(entityName: "Contact")
         request.returnsObjectsAsFaults = false
         request.predicate = NSPredicate(format:"id = %@", item.id)
