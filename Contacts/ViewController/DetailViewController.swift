@@ -13,6 +13,8 @@ class DetailViewController: UIViewController {
     @IBOutlet weak var firstCherecterLabel: UILabel!
     @IBOutlet weak var cherecterContainter: UIView!
     
+    var viewModel: DetailViewModel!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 

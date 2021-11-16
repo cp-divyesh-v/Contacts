@@ -18,11 +18,12 @@ class HomeViewController: UIViewController {
     var deleteContactIndexPath: IndexPath? = nil
     
     var viewModel = HomeViewModel()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         initView()
         setUpRxObservers()
-        LocalRepository.INSTANCE.saveData(contact: createObject())
+//        LocalRepository.INSTANCE.saveData(contact: createObject())
         
         
     }
@@ -41,6 +42,7 @@ class HomeViewController: UIViewController {
     
     func setUpRxObservers() {
         setUpContentChangdObservers()
+        setUpShouldPresentObservers()
     }
     
     func setUpContentChangdObservers() {
@@ -48,6 +50,17 @@ class HomeViewController: UIViewController {
             self?.cells = cells
             self?.tableView.reloadData()
         }) .disposed(by: DisposeBag())
+    }
+    
+    func setUpShouldPresentObservers() {
+        viewModel.shouldPresentSubject.asObservable().subscribe( onNext: { [weak self] viewToPresent in
+            switch viewToPresent {
+            case .showDetail(_):
+                let detailVc = DetailViewController()
+                detailVc.viewModel = DetailViewModel()
+                self?.show(DetailViewController(), sender: <#T##Any?#>)
+            }
+        }).disposed(by: DisposeBag())
     }
     
 }
@@ -69,6 +82,7 @@ extension HomeViewController: UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        viewModel.didActionSubject.onNext(.selectRow(indexPath))
     }
     
     func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
@@ -82,6 +96,7 @@ extension HomeViewController: UITableViewDataSource {
         
         let DeleteAction = UIAlertAction(title: "Delete", style: .destructive) { _ in
             self.viewModel.didActionSubject.onNext(.deleteItemAt(index))
+            print("view model is nil?",self.viewModel)
         }
         let CancelAction = UIAlertAction(title: "Cancel", style: .cancel, handler: nil)
         

@@ -10,17 +10,20 @@ import RxSwift
 
 class HomeViewModel {
     
-    // MARK: - Input
-    let didActionSubject = PublishSubject<Action>()
     enum Action {
         case selectRow(IndexPath)
         case deleteItemAt(IndexPath)
     }
-    // MARK: - Output
-    let shouldPresentSubject = PublishSubject<ViewToPresent>()
+    
     enum ViewToPresent {
         case showDetail(ContactModel)
     }
+    
+    // MARK: - Input
+    lazy var didActionSubject = PublishSubject<Action>()
+
+    // MARK: - Output
+    lazy var shouldPresentSubject = PublishSubject<ViewToPresent>()
     
     var cells: BehaviorSubject<[NameCellModel]> = .init(value: [])
 
@@ -61,7 +64,7 @@ class HomeViewModel {
     }
     
     func setUpActionObservers() {
-        didActionSubject.asObservable().subscribe(onNext: { [weak self] action in
+        self.didActionSubject.asObservable().subscribe(onNext: { [weak self] action in
             switch action {
             case .deleteItemAt(let indexPath):
                 self?.deleteItemAt(index: indexPath)
