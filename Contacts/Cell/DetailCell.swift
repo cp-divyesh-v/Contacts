@@ -13,8 +13,8 @@ class DetailCell: UICollectionViewCell {
     static var NIB: UINib { .init(nibName: String(describing: Self.self), bundle: .main) }
     
     @IBOutlet weak var container: UIView!
-    @IBOutlet weak var countryCode: UILabel!
-    @IBOutlet weak var numberLabel: UILabel!
+    @IBOutlet weak var countryCode: UITextField!
+    @IBOutlet weak var numberLabel: UITextField!
     @IBOutlet weak var optionImage: UIImageView!
     override func awakeFromNib() {
         super.awakeFromNib()

@@ -55,10 +55,10 @@ class HomeViewController: UIViewController {
     func setUpShouldPresentObservers() {
         viewModel.shouldPresentSubject.asObservable().subscribe( onNext: { [weak self] viewToPresent in
             switch viewToPresent {
-            case .showDetail(_):
+            case .showDetail(let model):
                 let detailVc = DetailViewController()
-                detailVc.viewModel = DetailViewModel()
-                self?.show(DetailViewController(), sender: <#T##Any?#>)
+                detailVc.viewModel = DetailViewModel(contact: model)
+                self?.show(DetailViewController(), sender: nil)
             }
         }).disposed(by: DisposeBag())
     }

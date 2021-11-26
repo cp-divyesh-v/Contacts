@@ -7,6 +7,7 @@
 
 import Foundation
 import RxSwift
+import RxRelay
 
 class HomeViewModel {
     
@@ -33,7 +34,8 @@ class HomeViewModel {
         }
     }
     
-    init() {
+    override init() {
+        super.init()
         setUpRxObservers()
         getContact()
         
